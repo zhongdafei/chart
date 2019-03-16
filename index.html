@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="echarts.js"></script>
+    <title>作业</title>
+ 
+
+  <style>
+    body,li{
+        margin:0;
+        padding:0;
+    }
+  #che{
+    width:150px;
+    height:600px;
+    background-color:rgb(214, 235, 172);
+    float:left;
+    position:absolute;
+  }
+  #che ul{
+    list-style-type:none;
+    font-size: 20px;
+    margin:10px;
+    display:block;
+    font-weight: 500;
+    font-family:'Times New Roman', Times, serif;
+  }
+  #che ul li:hover{
+    background-color:rgb(243, 187, 149);
+  }
+  .input{
+    width:100%;
+    height:450px;
+    background-color: rgb(236, 241, 215);
+    text-align: center;
+    line-height: 40px;
+    font-weight: 500;
+    font-family:'Times New Roman', Times, serif;
+    padding-top:150px;
+  
+  }
+  .reset{
+    margin-right:60px;
+  }
+  </style>
+</head>
+<body>
+    <div >
+        <div id="che">
+            <ul>
+                <li class="first" id="btn"> 首页</li>
+                <li class="char" id="btn1">表单</li>
+                <li class="file" id="btn2">图表</li>
+            </ul>
+        </div>
+        <div class="input" style="display:none;"id="dv">
+            &nbsp;登 入 名：<input type="text" name=""calss="dengru"><br>
+            密 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 码：<input type="password"><br>
+            电话号码：<input type="tel"><br>
+            邮  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;箱：<input type="email"><br>
+            <input type="radio" name="sex" value="男">男
+            <input type="radio" name="sex" value="女">女<br>
+            <input type="reset"class="reset">
+            <input type="submit"> 
+        </div>
+        <div id="bd" style="display:none;  width:100%; height:600px; float:right;background-color: rgb(236, 241, 215);">
+            <table border="1 " style="text-align: center; widows: 0;border:0 solid;margin:0 auto; margin-top:150px;font-family:'Times New Roman', Times, serif;">
+                <tr>
+                    <td style="width:80px;">学生姓名</td>
+                    <td style="width:100px;">学号</td>
+                    <td style="width:50px;">语文</td>
+                    <td style="width:50px;">数学</td>
+                    <td style="width:50px;">英语</td>
+                </tr>
+                <tr>
+                    <td>张三</td>
+                    <td>08070116201</td>
+                    <td>89</td>
+                    <td>90</td>
+                    <td>65</td>
+                </tr>
+                <tr>
+                    <td>李四</td>
+                    <td>08070116202</td>
+                    <td>77</td>
+                    <td>80</td>
+                    <td>73</td>
+                </tr>
+                <tr>
+                    <td>王二</td>
+                    <td>08070116203</td>
+                    <td>56</td>
+                    <td>76</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>麻子</td>
+                    <td>08070116204</td>
+                    <td>90</td>
+                    <td>90</td>
+                    <td>83</td>
+                </tr>
+                <tr>
+                    <td>云朵</td>
+                    <td>08070116205</td>
+                    <td>75</td>
+                    <td>50</td>
+                    <td>60</td>
+                </tr>
+                <tr>
+                        <td colspan="2">平均成绩</td>
+                        <td>77.4</td>
+                        <td>77.2</td>
+                        <td>72.2</td>
+                    </tr>
+            </table>
+            
+    
+        </div>
+        <div style="width:1260px;height:600px;display: none;float:right" id="chart1" ></div>
+            
+    <div>
+            <script >
+                var chart=echarts.init(document.getElementById("chart1"));
+                var option = {
+                title : {
+                    text: '漏斗图',
+                    subtext: '纯属虚构'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c}%"
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                legend: {
+                    data : ['展现','点击','访问','咨询','订单']
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'漏斗图',
+                        type:'funnel',
+                        width: '40%',
+                        data:[
+                            {value:60, name:'访问'},
+                            {value:40, name:'咨询'},
+                            {value:20, name:'订单'},
+                            {value:80, name:'点击'},
+                            {value:100, name:'展现'}
+                        ]
+                    },
+                    {
+                        name:'金字塔',
+                        type:'funnel',
+                        x : '50%',
+                        sort : 'ascending',
+                        itemStyle: {
+                            normal: {
+                                // color: 各异,
+                                label: {
+                                    position: 'left'
+                                }
+                            }
+                        },
+                        data:[
+                            {value:60, name:'访问'},
+                            {value:40, name:'咨询'},
+                            {value:20, name:'订单'},
+                            {value:80, name:'点击'},
+                            {value:100, name:'展现'}
+                          ]
+                      }
+                    ]
+                };
+                chart.setOption(option);
+                
+            </script>
+        </div>
+        <script language="javascript" type="text/javascript">
+           document.getElementById("btn").onclick=function(){
+                document.getElementById("dv").style.display="block";
+                document.getElementById("chart1").style.display="none";
+                document.getElementById("bd").style.display="none";
+        }
+           document.getElementById("btn1").onclick=function(){
+                document.getElementById("bd").style.display="block";
+                document.getElementById("chart1").style.display="none";
+                document.getElementById("dv").style.display="none";
+        }
+        document.getElementById("btn2").onclick=function(){
+                document.getElementById("chart1").style.display="block";
+                document.getElementById("dv").style.display="none";
+                document.getElementById("bd").style.display="none";
+        }
+        </script>
+    </div>
+
+
+
+</body>
+</html>
